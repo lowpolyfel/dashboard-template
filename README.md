@@ -1,51 +1,23 @@
-# Plantilla de Dashboard de Producción
+# Control EPP (plantilla web)
 
-Esta plantilla proporciona una base modular para construir tableros de monitoreo de líneas de producción. Separa la lógica en
-archivos independientes de HTML, CSS y JavaScript para facilitar la personalización y la extensión en proyectos futuros.
+Este proyecto ahora incluye una interfaz web inspirada en la imagen de referencia para gestionar:
 
-## Estructura del proyecto
+- Búsqueda de trabajadores por **RPE, departamento y puesto**.
+- Checklist de **EPP por departamento/puesto**.
+- Carga, visualización, descarga y eliminación de **documentos PDF** por trabajador y EPP.
+- Carga de imagen de empresa y foto de trabajador.
 
-```
+## Persistencia de datos
 
-public/
->>>>>>> origin/main
-├── assets/
-│   ├── css/
-│   │   └── main.css
-│   └── js/
-│       ├── app.js
-│       ├── data.js
-│       ├── logic.js
-│       └── render.js
-<<<<<<< HEAD
-├── index.html
-└── README.md
-=======
-└── index.html
+La demo usa **IndexedDB** (base de datos del navegador) con los almacenes:
 
-```
+- `trabajadores`
+- `controlEpp`
+- `documentos`
+- `empresa`
 
-- **index.html**: Contiene la estructura del documento y enlaza los recursos de estilo y scripts.
-- **main.css**: Define la apariencia visual del tablero.
-- **data.js**: Centraliza constantes, estado inicial y variables compartidas.
-- **logic.js**: Incluye funciones de negocio para generar datos, aplicar reglas y gestionar el estado.
-- **render.js**: Responsable de la actualización de la interfaz y del renderizado de componentes.
-- **app.js**: Punto de entrada que inicializa el tablero y conecta eventos de usuario.
+Además, se incluye un esquema SQL sugerido para backend en `database/schema.sql`.
 
-## Uso local
+## Ejecutar local
 
-
-1. Abre `index.html` en tu navegador preferido.
-2. Personaliza los archivos dentro de `assets/` para ajustar estilos, reglas de negocio o textos según tus necesidades.
-=======
-1. Abre `public/index.html` en tu navegador preferido.
-2. Personaliza los archivos dentro de `public/assets/` para ajustar estilos, reglas de negocio o textos según tus necesidades.
-
-
-## Personalización sugerida
-
-- Ajusta los nombres de máquinas y los indicadores en `data.js`.
-- Modifica las reglas de severidad o los cálculos de KPIs en `logic.js`.
-- Cambia la distribución de tarjetas o componentes visuales en `render.js` y `main.css`.
-
-Con esta estructura modular, puedes ampliar fácilmente el panel para nuevas métricas, fuentes de datos o estilos corporativos.
+Puedes abrir `index.html` directamente en el navegador.
