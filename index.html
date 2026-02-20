@@ -1,51 +1,84 @@
-wq<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Plantilla de Panel de Producción</title>
+    <title>Control EPP</title>
     <link rel="stylesheet" href="assets/css/main.css" />
   </head>
   <body>
-    <div class="wrap">
-      <header class="topbar">
-        <div class="legend">
-          <span class="pill"><span class="dot ok"></span>Estado positivo</span>
-          <span class="pill"><span class="dot warn"></span>Advertencia</span>
-          <span class="pill"><span class="dot bad"></span>Crítico</span>
-          <span class="pill"><span class="dot info"></span>Información</span>
-        </div>
-        <button id="btnGenerate" class="btn">Actualizar datos</button>
-      </header>
+    <header class="topbar">
+      <div class="brand">Control EPP</div>
+      <nav>
+        <a href="#busqueda">Buscar trabajador</a>
+        <a href="#registro">Registrar trabajador</a>
+      </nav>
+    </header>
 
-      <main class="grid">
-        <section class="timeline-bare" id="timelineBox">
-          <table id="timeline">
+    <main class="layout">
+      <section class="panel" id="busqueda">
+        <div class="panel-title-row">
+          <h1>Vista de EPP</h1>
+          <button id="downloadZip" class="btn btn-green">Exportar JSON</button>
+        </div>
+
+        <div class="search-grid">
+          <label>
+            RPE
+            <input id="searchRpe" type="text" placeholder="Ej. J408R" />
+          </label>
+          <label>
+            Departamento
+            <input id="searchDept" type="text" placeholder="Ej. Mantenimiento" />
+          </label>
+          <label>
+            Puesto
+            <input id="searchRole" type="text" placeholder="Ej. Técnico" />
+          </label>
+          <button id="searchBtn" class="btn">Buscar</button>
+        </div>
+
+        <div class="company-box">
+          <h3>Imagen de la empresa</h3>
+          <div class="company-upload">
+            <input id="companyImage" type="file" accept="image/*" />
+            <button id="saveCompanyImage" class="btn">Guardar imagen</button>
+          </div>
+          <img id="companyPreview" alt="Logo empresa" class="company-preview" />
+        </div>
+
+        <div class="table-wrap">
+          <table>
             <thead>
               <tr>
-                <th style="text-align:left">Horario</th>
-                <th>Máquina A</th>
-                <th>Máquina B</th>
-                <th>Máquina C</th>
-                <th>Máquina D</th>
+                <th>RPE</th>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Departamento</th>
+                <th>Puesto</th>
+                <th>Checklist</th>
+                <th>Gestión de documentos (PDF)</th>
               </tr>
             </thead>
-            <tbody></tbody>
+            <tbody id="workersBody"></tbody>
           </table>
-        </section>
+        </div>
+      </section>
 
-        <aside class="right-col" id="rightCol">
-          <div>
-            <h2>Estado actual</h2>
-            <p class="description">
-              Este panel resume la actividad de cada estación y actúa como base para cualquier línea de producción. Ajusta los
-              textos, íconos y reglas según las necesidades de tu planta.
-            </p>
-            <div id="machines" class="machines"></div>
-          </div>
-        </aside>
-      </main>
-    </div>
+      <section class="panel" id="registro">
+        <h2>Registro / sincronización de trabajador</h2>
+        <p class="muted">La tabla queda lista para copiado desde otra base de datos. Puedes cargar registros de prueba.</p>
+
+        <form id="workerForm" class="form-grid">
+          <label>RPE <input required name="rpe" type="text" /></label>
+          <label>Nombre <input required name="nombre" type="text" /></label>
+          <label>Departamento <input required name="departamento" type="text" /></label>
+          <label>Puesto <input required name="puesto" type="text" /></label>
+          <label>Imagen del trabajador <input name="imagen" type="file" accept="image/*" /></label>
+          <button class="btn btn-green" type="submit">Guardar trabajador</button>
+        </form>
+      </section>
+    </main>
 
     <script type="module" src="assets/js/app.js"></script>
   </body>
